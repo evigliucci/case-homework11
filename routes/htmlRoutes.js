@@ -1,6 +1,6 @@
 // Include Dependencies 
-var path = require("path");
-var router = require("express").Router();
+const path = require("path");
+const router = require("express").Router();
 
 // Create route for /notes from public directory 
 router.get("/notes", (req, res) => {
