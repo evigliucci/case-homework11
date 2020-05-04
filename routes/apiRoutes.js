@@ -1,11 +1,11 @@
-var path = require("path");
-var fs = require("fs");
-var router = require("express").Router();
-var store = require("../db/store");
-var notesData = require("../db/db");
+// Include Dependencies 
+const path = require("path");
+const fs = require("fs");
+const router = require("express").Router();
 const uuid = require('uuid/v4');
 
-//api/notes
+//READ NOTES
+// api/notes, Read notes for DB, check for errors, convert json and return the result. 
 router.get('/notes', (req, res) => {
     fs.readFile("./db/db.json", (err, data) => {
         if (err) throw err;
@@ -14,7 +14,8 @@ router.get('/notes', (req, res) => {
     });
 })
 
-//api/notes
+// ADD NEW NOTE
+// api/notes, Get exisitng notes, add new note to exisiting list of notes, add all updated notes to the DB. 
 router.post("/notes", (req, res) => {
     fs.readFile("./db/db.json", (err, data) => {
         if (err) throw err;
@@ -32,7 +33,8 @@ router.post("/notes", (req, res) => {
     });
 });
 
-// Delete a note
+// DELETE NOTE
+// Get notes, check for errors, Filter out note based on ID from DB, send updated list to DB. 
 router.delete("/notes/:id", (req, res) => {
     fs.readFile("./db/db.json", (err, data) => {
         if (err) throw err;
@@ -46,4 +48,5 @@ router.delete("/notes/:id", (req, res) => {
     });
 });
 
+// Export Routes
 module.exports = router;
